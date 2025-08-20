@@ -14,6 +14,7 @@ return new class extends Migration
             $table->morphs('notable');
             $table->nullableMorphs('creator');
             $table->timestamps();
+
         });
     }
 };
