@@ -1,6 +1,5 @@
 <?php
 
-// config for MohamedSaid/Notable
 return [
-
+    'table_name' => 'notables',
 ];

@@ -8,12 +8,15 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('notable_table', function (Blueprint $table) {
+        Schema::create(config('notable.table_name', 'notables'), function (Blueprint $table) {
             $table->id();
-
-            // add fields
-
+            $table->text('note');
+            $table->morphs('notable');
+            $table->nullableMorphs('creator');
             $table->timestamps();
+
+            $table->index(['notable_type', 'notable_id']);
+            $table->index(['creator_type', 'creator_id']);
         });
     }
 };
