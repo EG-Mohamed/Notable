@@ -34,4 +34,25 @@ class Notable extends Model
     {
         return $this->morphTo();
     }
+
+    public function scopeByCreator($query, $creator)
+    {
+        return $query->where('creator_type', get_class($creator))
+            ->where('creator_id', $creator->getKey());
+    }
+
+    public function scopeWithoutCreator($query)
+    {
+        return $query->whereNull('creator_type');
+    }
+
+    public function scopeRecent($query, int $days = 7)
+    {
+        return $query->where('created_at', '>=', now()->subDays($days));
+    }
+
+    public function scopeOlderThan($query, int $days = 30)
+    {
+        return $query->where('created_at', '<=', now()->subDays($days));
+    }
 }
