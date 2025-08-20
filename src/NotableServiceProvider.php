@@ -2,9 +2,9 @@
 
 namespace MohamedSaid\Notable;
 
+use MohamedSaid\Notable\Commands\NotableCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use MohamedSaid\Notable\Commands\NotableCommand;
 
 class NotableServiceProvider extends PackageServiceProvider
 {
