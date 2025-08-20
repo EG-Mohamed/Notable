@@ -14,9 +14,6 @@ return new class extends Migration
             $table->morphs('notable');
             $table->nullableMorphs('creator');
             $table->timestamps();
-
-            $table->index(['notable_type', 'notable_id']);
-            $table->index(['creator_type', 'creator_id']);
         });
     }
 };
