@@ -55,4 +55,43 @@ class Notable extends Model
     {
         return $query->where('created_at', '<=', now()->subDays($days));
     }
+
+    public function scopeToday($query)
+    {
+        return $query->whereDate('created_at', now()->toDateString());
+    }
+
+    public function scopeThisWeek($query)
+    {
+        return $query->whereBetween('created_at', [
+            now()->startOfWeek(),
+            now()->endOfWeek()
+        ]);
+    }
+
+    public function scopeThisMonth($query)
+    {
+        return $query->whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year);
+    }
+
+    public function scopeThisYear($query)
+    {
+        return $query->whereYear('created_at', now()->year);
+    }
+
+    public function scopeBetweenDates($query, $startDate, $endDate)
+    {
+        return $query->whereBetween('created_at', [$startDate, $endDate]);
+    }
+
+    public function scopeContainingText($query, string $text)
+    {
+        return $query->where('note', 'LIKE', '%' . $text . '%');
+    }
+
+    public function scopeSearch($query, string $searchTerm)
+    {
+        return $query->where('note', 'LIKE', '%' . $searchTerm . '%');
+    }
 }
