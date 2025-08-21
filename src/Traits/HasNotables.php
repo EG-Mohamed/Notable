@@ -9,7 +9,7 @@ trait HasNotables
 {
     public function notables(): MorphMany
     {
-        return $this->morphMany(Notable::class, 'notable');
+        return $this->morphMany(Notable::class, 'notable')->orderBy(config('notable.order_by_column', 'created_at'), config('notable.order_by_direction', 'desc'));
     }
 
     public function addNote(string $note, $creator = null): Notable
