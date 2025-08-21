@@ -67,4 +67,29 @@ trait HasNotables
     {
         return $this->notables()->where('id', $noteId)->update(['note' => $note]);
     }
+
+    public function searchNotes(string $searchTerm)
+    {
+        return $this->notables()->search($searchTerm)->orderBy('created_at', 'desc')->get();
+    }
+
+    public function getNotesToday()
+    {
+        return $this->notables()->today()->orderBy('created_at', 'desc')->get();
+    }
+
+    public function getNotesThisWeek()
+    {
+        return $this->notables()->thisWeek()->orderBy('created_at', 'desc')->get();
+    }
+
+    public function getNotesThisMonth()
+    {
+        return $this->notables()->thisMonth()->orderBy('created_at', 'desc')->get();
+    }
+
+    public function getNotesInRange($startDate, $endDate)
+    {
+        return $this->notables()->betweenDates($startDate, $endDate)->orderBy('created_at', 'desc')->get();
+    }
 }
