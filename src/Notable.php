@@ -65,7 +65,7 @@ class Notable extends Model
     {
         return $query->whereBetween('created_at', [
             now()->startOfWeek(),
-            now()->endOfWeek()
+            now()->endOfWeek(),
         ]);
     }
 
@@ -87,11 +87,11 @@ class Notable extends Model
 
     public function scopeContainingText($query, string $text)
     {
-        return $query->where('note', 'LIKE', '%' . $text . '%');
+        return $query->where('note', 'LIKE', '%'.$text.'%');
     }
 
     public function scopeSearch($query, string $searchTerm)
     {
-        return $query->where('note', 'LIKE', '%' . $searchTerm . '%');
+        return $query->where('note', 'LIKE', '%'.$searchTerm.'%');
     }
 }
