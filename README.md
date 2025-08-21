@@ -110,6 +110,13 @@ $hasNotes = $model->hasNotes();
 
 // Count notes
 $count = $model->notesCount();
+
+// Enhanced retrieval methods
+$todayNotes = $model->getNotesToday();
+$weekNotes = $model->getNotesThisWeek();
+$monthNotes = $model->getNotesThisMonth();
+$rangeNotes = $model->getNotesInRange('2024-01-01', '2024-12-31');
+$searchResults = $model->searchNotes('error');
 ```
 
 ### Managing Notes
@@ -142,9 +149,23 @@ $lastMonth = Notable::recent(30)->get();
 // Older notes (30+ days by default)  
 $oldNotes = Notable::olderThan(30)->get();
 
+// Date-based scopes
+$todayNotes = Notable::today()->get();
+$weekNotes = Notable::thisWeek()->get();
+$monthNotes = Notable::thisMonth()->get();
+$yearNotes = Notable::thisYear()->get();
+
+// Date range filtering
+$rangeNotes = Notable::betweenDates('2024-01-01', '2024-12-31')->get();
+
+// Search note content
+$searchResults = Notable::search('error')->get();
+$containingText = Notable::containingText('login')->get();
+
 // Combine scopes
 $recentAdminNotes = Notable::byCreator($admin)
-    ->recent(14)
+    ->thisMonth()
+    ->search('important')
     ->orderBy('created_at', 'desc')
     ->get();
 ```
