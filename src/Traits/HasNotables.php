@@ -13,7 +13,7 @@ trait HasNotables
         return $this->morphMany(Notable::class, 'notable')->orderBy(config('notable.order_by_column', 'created_at'), config('notable.order_by_direction', 'desc'));
     }
 
-    public function addNote(string $note, Model $creator = null): Notable
+    public function addNote(string $note, ?Model $creator = null): Notable
     {
         $data = ['note' => $note];
 
