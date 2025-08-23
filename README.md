@@ -1,9 +1,9 @@
 # 📝 Notable - Laravel Notes Package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mohamedsaid/notable.svg?style=flat-square)](https://packagist.org/packages/mohamedsaid/notable)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/mohamedsaid/notable/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/mohamedsaid/notable/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/mohamedsaid/notable/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/mohamedsaid/notable/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/mohamedsaid/notable.svg?style=flat-square)](https://packagist.org/packages/mohamedsaid/notable)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/eg-mohamed/notable.svg?style=flat-square)](https://packagist.org/packages/eg-mohamed/notable)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/eg-mohamed/notable/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/eg-mohamed/notable/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/eg-mohamed/notable/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/eg-mohamed/notable/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/eg-mohamed/notable.svg?style=flat-square)](https://packagist.org/packages/eg-mohamed/notable)
 
 **Notable** is a powerful Laravel package that enables you to add notes to any Eloquent model through polymorphic relationships. Perfect for adding internal comments, audit logs, user feedback, or any textual annotations to your models.
 
