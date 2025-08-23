@@ -2,6 +2,7 @@
 
 namespace MohamedSaid\Notable\Traits;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use MohamedSaid\Notable\Notable;
 
@@ -12,12 +13,12 @@ trait HasNotables
         return $this->morphMany(Notable::class, 'notable')->orderBy(config('notable.order_by_column', 'created_at'), config('notable.order_by_direction', 'desc'));
     }
 
-    public function addNote(string $note, $creator = null): Notable
+    public function addNote(string $note, Model $creator = null): Notable
     {
         $data = ['note' => $note];
 
         if ($creator) {
-            $data['creator_type'] = get_class($creator);
+            $data['creator_type'] = $creator->getMorphClass();
             $data['creator_id'] = $creator->getKey();
         }
 
@@ -44,10 +45,10 @@ trait HasNotables
         return $this->notables()->count();
     }
 
-    public function getNotesByCreator($creator)
+    public function getNotesByCreator(Model $creator)
     {
         return $this->notables()
-            ->where('creator_type', get_class($creator))
+            ->where('creator_type', $creator->getMorphClass())
             ->where('creator_id', $creator->getKey())
             ->orderBy('created_at', 'desc')
             ->get();

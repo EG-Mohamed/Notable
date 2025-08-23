@@ -35,9 +35,9 @@ class Notable extends Model
         return $this->morphTo();
     }
 
-    public function scopeByCreator($query, $creator)
+    public function scopeByCreator($query, Model $creator)
     {
-        return $query->where('creator_type', get_class($creator))
+        return $query->where('creator_type', $creator->getMorphClass())
             ->where('creator_id', $creator->getKey());
     }
 
