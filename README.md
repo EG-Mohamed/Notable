@@ -22,7 +22,7 @@
 Install the package via Composer:
 
 ```bash
-composer require mohamedsaid/notable
+composer require eg-mohamed/notable
 ```
 
 Publish and run the migrations:
