@@ -2,6 +2,7 @@
 
 namespace MohamedSaid\Notable\Traits;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use MohamedSaid\Notable\Notable;
@@ -25,14 +26,14 @@ trait HasNotables
         return $this->notables()->create($data);
     }
 
-    public function getNotes()
+    public function getNotes(): Collection
     {
-        return $this->notables()->orderBy('created_at', 'desc')->get();
+        return $this->notables()->get();
     }
 
     public function getLatestNote(): ?Notable
     {
-        return $this->notables()->orderBy('created_at', 'desc')->first();
+        return $this->notables()->reorder()->latest()->first();
     }
 
     public function hasNotes(): bool
@@ -45,52 +46,51 @@ trait HasNotables
         return $this->notables()->count();
     }
 
-    public function getNotesByCreator(Model $creator)
+    public function getNotesByCreator(Model $creator): Collection
     {
         return $this->notables()
             ->where('creator_type', $creator->getMorphClass())
             ->where('creator_id', $creator->getKey())
-            ->orderBy('created_at', 'desc')
             ->get();
     }
 
-    public function getNotesWithCreator()
+    public function getNotesWithCreator(): Collection
     {
-        return $this->notables()->with('creator')->orderBy('created_at', 'desc')->get();
+        return $this->notables()->with('creator')->get();
     }
 
     public function deleteNote(int $noteId): bool
     {
-        return $this->notables()->where('id', $noteId)->delete();
+        return $this->notables()->reorder()->where('id', $noteId)->delete() > 0;
     }
 
     public function updateNote(int $noteId, string $note): bool
     {
-        return $this->notables()->where('id', $noteId)->update(['note' => $note]);
+        return $this->notables()->reorder()->where('id', $noteId)->update(['note' => $note]) > 0;
     }
 
-    public function searchNotes(string $searchTerm)
+    public function searchNotes(string $searchTerm): Collection
     {
-        return $this->notables()->search($searchTerm)->orderBy('created_at', 'desc')->get();
+        return $this->notables()->search($searchTerm)->get();
     }
 
-    public function getNotesToday()
+    public function getNotesToday(): Collection
     {
-        return $this->notables()->today()->orderBy('created_at', 'desc')->get();
+        return $this->notables()->today()->get();
     }
 
-    public function getNotesThisWeek()
+    public function getNotesThisWeek(): Collection
     {
-        return $this->notables()->thisWeek()->orderBy('created_at', 'desc')->get();
+        return $this->notables()->thisWeek()->get();
     }
 
-    public function getNotesThisMonth()
+    public function getNotesThisMonth(): Collection
     {
-        return $this->notables()->thisMonth()->orderBy('created_at', 'desc')->get();
+        return $this->notables()->thisMonth()->get();
     }
 
-    public function getNotesInRange($startDate, $endDate)
+    public function getNotesInRange(mixed $startDate, mixed $endDate): Collection
     {
-        return $this->notables()->betweenDates($startDate, $endDate)->orderBy('created_at', 'desc')->get();
+        return $this->notables()->betweenDates($startDate, $endDate)->get();
     }
 }

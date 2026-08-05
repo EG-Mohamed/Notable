@@ -15,7 +15,7 @@
 - 🔍 **Query Scopes** - Powerful query methods for filtering notes
 - 🎯 **Configurable** - Customize table names through config
 - 🚀 **Easy Integration** - Simple trait-based implementation
-- 📦 **Laravel 10+ Ready** - Built for modern Laravel applications
+- 📦 **Laravel 12 & 13 Ready** - Built for modern Laravel applications
 
 ## 🚀 Installation
 
@@ -129,6 +129,10 @@ $model->updateNote($noteId, 'Updated note content');
 $model->deleteNote($noteId);
 ```
 
+> `updateNote()` and `deleteNote()` return `false` when the note ID doesn't match any row. On some
+> database drivers, `updateNote()` may also return `false` when called with content identical to the
+> current note, since no row is actually changed.
+
 ### Query Scopes
 
 The `Notable` model includes powerful query scopes:
@@ -197,10 +201,15 @@ php artisan vendor:publish --tag="notable-config"
 <?php
 // config/notable.php
 return [
-    // Customize the table name
     'table_name' => 'notables',
+    'order_by_column' => 'created_at',
+    'order_by_direction' => 'desc',
 ];
 ```
+
+`order_by_column` and `order_by_direction` control the default ordering applied by the `notables()`
+relationship, and therefore every retrieval method built on top of it (`getNotes()`, `searchNotes()`,
+and so on). `getLatestNote()` always returns the most recently created note regardless of this config.
 
 ## 🎨 Advanced Examples
 
@@ -288,6 +297,13 @@ $note->creator;      // The creator model (nullable)
 $note->created_at;   // When it was created
 $note->updated_at;   // When it was updated
 ```
+
+## 🔒 Mass Assignment
+
+The `Notable` model guards only its `id` column, so `note`, `notable_type`, `notable_id`,
+`creator_type`, and `creator_id` are all mass-assignable. Avoid calling `Notable::create($request->all())`
+directly from user input — use `$model->addNote($request->string('note'), $creator)` instead, which
+builds the attributes internally and does not expose the polymorphic columns to raw request data.
 
 ## 🤝 Contributing
 

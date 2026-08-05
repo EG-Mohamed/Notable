@@ -12,7 +12,7 @@ class NotableCommand extends Command
 
     public function handle(): int
     {
-        $this->comment('All done');
+        $this->comment(__('All done'));
 
         return self::SUCCESS;
     }
