@@ -2,6 +2,22 @@
 
 All notable changes to `Notable` will be documented in this file.
 
+## v2.0 - 2026-08-05
+
+### What's Changed
+
+* Update README.md by @Solomon04 in https://github.com/EG-Mohamed/Notable/pull/4
+* Bump stefanzweifel/git-auto-commit-action from 6 to 7 by @dependabot[bot] in https://github.com/EG-Mohamed/Notable/pull/5
+* Bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by @dependabot[bot] in https://github.com/EG-Mohamed/Notable/pull/7
+* Bump dependabot/fetch-metadata from 2.5.0 to 3.1.0 by @dependabot[bot] in https://github.com/EG-Mohamed/Notable/pull/9
+* Bump actions/checkout from 4 to 7 by @dependabot[bot] in https://github.com/EG-Mohamed/Notable/pull/10
+
+### New Contributors
+
+* @Solomon04 made their first contribution in https://github.com/EG-Mohamed/Notable/pull/4
+
+**Full Changelog**: https://github.com/EG-Mohamed/Notable/compare/v1.4...v2.0
+
 ## 2.0.0 - 2026-08-05
 
 - Add Laravel 13 support
